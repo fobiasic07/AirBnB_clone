@@ -4,8 +4,8 @@
 
 ## Description
 
-This is a complete web application, integrating database storage,
-a back-end API, and front-end interfacing in a clone of [AirBnB](https://www.airbnb.com/).
+This is an ALX course team project in creation and completion of a web application, integrating database storage,
+a back-end API, and front-end interfacing in a clone of [AirBnB](https://www.airbnb.com/) called hbnbBnB.
 
 ## Classes
 
