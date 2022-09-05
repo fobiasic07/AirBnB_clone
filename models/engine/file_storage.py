@@ -49,17 +49,16 @@ class FileStorage:
                    "Review": Review}
         return classes
 
-     def reload(self):
-        """Deserialize the JSON file __file_path to __objects, if it exists."""
-        try:
-            with open(FileStorage.__file_path) as f:
-                dict_object = json.load(f)
-                for obj in dict_object.values():
-                    cls_name = obj["__class__"]
-                    del obj["__class__"]
-                    self.new(eval(cls_name)(**obj))
-        except FileNotFoundError:
+    def reload(self):
+        """Deserializes JSON file into __objects."""
+        if not os.path.isfile(FileStorage.__file_path):
             return
+        with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
+            obj_dict = json.load(f)
+            obj_dict = {k: self.classes()[v["__class__"]](**v)
+                        for k, v in obj_dict.items()}
+            # TODO: should this overwrite or insert?
+            FileStorage.__objects = obj_dict
 
     def attributes(self):
         """Returns the valid attributes and their types for classname."""
